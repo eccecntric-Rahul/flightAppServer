@@ -32,7 +32,7 @@ const login = async(req,res)=>{
         { 
         console.log(password)
          const resp = await responseUser.comparePassword(password);  
-        if(resp==false)resp.status(400).send("wrong Password");
+        if(resp==false)res.status(400).send("wrong Password");
         else{
             let token=jwt.sign({_id:responseUser._id},process.env.SECRET_KEY,{
                 expiresIn: "7d",
