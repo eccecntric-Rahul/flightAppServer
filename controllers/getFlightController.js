@@ -1,18 +1,5 @@
 import amadeus from "../index"
 
-const getAirlineFullName = async (airlineCode) => {
-  try {
-    const response = await amadeus.referenceData.airlines.get({
-      airlineCodes: airlineCode
-    });
-
-    return response.data[0].businessName;
-  } catch (err) {
-    console.error(err);
-    return '';
-  }
-};
-
 const getFlightController = async (req, res) => {
     try {
         const {from ,date,to}=req.query;
@@ -31,7 +18,7 @@ const getFlightController = async (req, res) => {
         res.status(200).send(flights);
     } catch (err) {
         console.log(err)
-        res.status(400).send("Error occured");
+        res.status(400).send(err);
     }
 }
 
